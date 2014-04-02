@@ -1,4 +1,4 @@
-codingChallange1
+codingChallenge1
 ================
 
 A coding challenge i had to do for a job interview. 
