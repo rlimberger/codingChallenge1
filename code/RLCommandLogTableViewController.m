@@ -66,18 +66,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // command stack size determines row count
-    return [RLServerAdapter sharedAdapter].commandStack.count;
+    return [RLServerAdapter sharedAdapter].stackSize;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // make sure this row has a command
-    if(indexPath.row >= [RLServerAdapter sharedAdapter].commandStack.count)
-        return nil;
-    
-    // get the command for this row
-    RLCommand* command = (RLCommand*)[RLServerAdapter sharedAdapter].commandStack[[RLServerAdapter sharedAdapter].commandStack.count-1-indexPath.row];
+    RLCommand* command = [[RLServerAdapter sharedAdapter] commandAtIndex:indexPath.row];
     if(!command)
         return nil;
     
@@ -118,19 +112,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // figure out which command this row represents
-    RLCommand* command = (RLCommand*)[RLServerAdapter sharedAdapter].commandStack[[RLServerAdapter sharedAdapter].commandStack.count-1-indexPath.row];
+    BOOL toggled = [[RLServerAdapter sharedAdapter] toggleActive:indexPath.row];
     
-    if(command) {
-        // toggle active state
-        command.active = !command.active;
-        
+    if(toggled) {
         // rebuild this row
         [tableView beginUpdates];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
-        
-        // active state of a command has changed, state needs to be recomputed
-        [[RLServerAdapter sharedAdapter] recomputeCurrentColorState];
     }
     
     // we are done with this row now, as it has it's accessort type updated by now

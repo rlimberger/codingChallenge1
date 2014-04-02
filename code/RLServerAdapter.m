@@ -17,6 +17,7 @@
     NSString* hostname;
     NSInteger port;
     dispatch_source_t source;
+    NSMutableArray* commandStack;
 }
 
 @end
@@ -41,7 +42,7 @@
 - (id)init
 {
     if((self = [super init])) {
-        _commandStack = [NSMutableArray array];
+        commandStack = [NSMutableArray array];
     }
     return self;
 }
@@ -146,7 +147,7 @@
     // all previous commands should become inactive (deselected)
     // the new command added below will be active by default
     if(command.type == CommandTypeAbsolute) {
-        for(RLCommand* c in self.commandStack)
+        for(RLCommand* c in commandStack)
             c.active = NO;
     }
     
@@ -154,7 +155,7 @@
     // where the command stack/log will be reset.
     // eventually, this will cause a memory problem, but we ignore this
     // for now
-    [self.commandStack addObject:command];
+    [commandStack addObject:command];
     
     // state needs to be updated
     [self recomputeCurrentColorState];
@@ -170,7 +171,7 @@
     unsigned char bytes[4] = {CommandTypeAbsolute, 127, 127, 127};
     NSData* data = [NSData dataWithBytes:(const void*)bytes length:4];
     RLCommand* command = [[RLCommand alloc] initWithData:data];
-    [self.commandStack removeAllObjects];
+    [commandStack removeAllObjects];
     [self pushCommand:command];
 }
 
@@ -185,7 +186,7 @@
         RLCommand* currentAbsoluteCommand = nil;
         
         // walk stack from top to bottom to find the last absolute command
-        for(RLCommand* command in self.commandStack.reverseObjectEnumerator) {
+        for(RLCommand* command in commandStack.reverseObjectEnumerator) {
             if(command.type == CommandTypeAbsolute) {
                 currentAbsoluteCommand = command;
                 break;
@@ -202,9 +203,9 @@
         _currentR = currentAbsoluteCommand.r;
         _currentG = currentAbsoluteCommand.g;
         _currentB = currentAbsoluteCommand.b;
-        NSInteger indexOfCurrentAbsoluteCommand = [self.commandStack indexOfObject:currentAbsoluteCommand];
-        for(NSInteger i = indexOfCurrentAbsoluteCommand; i < self.commandStack.count; i++) {
-            RLCommand* command = self.commandStack[i];
+        NSInteger indexOfCurrentAbsoluteCommand = [commandStack indexOfObject:currentAbsoluteCommand];
+        for(NSInteger i = indexOfCurrentAbsoluteCommand; i < commandStack.count; i++) {
+            RLCommand* command = commandStack[i];
             
             // we should not encounter any absolute commands at this point, but
             // lets just make sure
@@ -220,15 +221,63 @@
     });
 }
 
+- (BOOL)toggleActive:(NSInteger)index
+{
+    if(index < 0 || index >= commandStack.count)
+        return NO;
+    
+    __weak RLServerAdapter* weakSelf = self;
+    __block BOOL toggled = NO;
+    dispatch_sync([RLServerAdapter dispatchQueue], ^{
+        RLServerAdapter* strongSelf = weakSelf;
+        RLCommand* command = [strongSelf->commandStack objectAtIndex:strongSelf->commandStack.count-1-index];
+        
+        if(command) {
+            command.active = !command.active;
+            [strongSelf recomputeCurrentColorState];
+            toggled = YES;
+        }
+    });
+    
+    return toggled;
+}
+
+- (RLCommand*)commandAtIndex:(NSInteger)index
+{
+    if(index < 0 || index >= commandStack.count)
+        return nil;
+    
+    __block RLCommand* command = nil;
+    __weak RLServerAdapter* weakSelf = self;
+    dispatch_sync([RLServerAdapter dispatchQueue], ^{
+        RLServerAdapter* strongSelf = weakSelf;
+        command = [strongSelf->commandStack objectAtIndex:strongSelf->commandStack.count-1-index];
+    });
+    
+    return command;
+}
+
+- (NSInteger)stackSize
+{
+    __block NSInteger stackSize = 0;
+    __weak RLServerAdapter* weakSelf = self;
+    dispatch_sync([RLServerAdapter dispatchQueue], ^{
+        RLServerAdapter* strongSelf = weakSelf;
+        stackSize = strongSelf->commandStack.count;
+    });
+    
+    return stackSize;
+}
+
 // singleton background queue
 + (dispatch_queue_t)dispatchQueue
 {
-    static dispatch_queue_t __adapterDispatchQueue = NULL;
+    static dispatch_queue_t adapterDispatchQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __adapterDispatchQueue = dispatch_queue_create("com.rl.codingchallenge.adapterDispatchQueue", NULL);
+        adapterDispatchQueue = dispatch_queue_create("com.rl.codingchallenge.adapterDispatchQueue", NULL);
     });
-    return __adapterDispatchQueue;
+    return adapterDispatchQueue;
 }
 
 

@@ -18,15 +18,6 @@
 @interface RLServerAdapter : NSObject
 
 /**
- The stack of commands.
- 
- @discussion 
- This stack holds all commands received by the server. Note: this stack is currently
- not capped, so it may lead to memory problems. Future revisions will implement a cap.
- */
-@property (strong, readonly) NSMutableArray* commandStack;
-
-/**
  Current Red value of the state.
  
  @discussion 
@@ -70,12 +61,27 @@
 - (void)connectToServer:(NSString*)aHostname withPort:(NSInteger)aPort;
 
 /**
- Force to recompute the current color state.
+ Toggle the active state of a comand.
  
- @discussion 
- Whenever a command's active property is changed,
- the current state should be recomputed.
+ @param
+ Index of the comand to toggle.
+ 
+ @return
+ Yes if the command was toggled.
  */
-- (void)recomputeCurrentColorState;
+- (BOOL)toggleActive:(NSInteger)index;
+
+/**
+ Get the command at a given index.
+ 
+ @param
+ Index of the comand to retrieve. Will return nil if index is out of bounds.
+ */
+- (RLCommand*)commandAtIndex:(NSInteger)index;
+
+/**
+ Get the size of the current stack.
+ */
+- (NSInteger)stackSize;
 
 @end

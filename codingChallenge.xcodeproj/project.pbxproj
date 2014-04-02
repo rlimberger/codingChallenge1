@@ -68,10 +68,13 @@
 		701AC6ED18ECAB5A005D748D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				701AC6DC18EC7C8B005D748D /* RLCommandTableViewCell.h */,
+				701AC6DE18EC7C8B005D748D /* RLCommandTableViewCell.m */,
 				701AC6EE18ECAB76005D748D /* RLSwatchView.h */,
 				701AC6EF18ECAB76005D748D /* RLSwatchView.m */,
 			);
 			name = Views;
+			path = pebble;
 			sourceTree = "<group>";
 		};
 		70561A4018E242C200B76286 = {
@@ -79,7 +82,11 @@
 			children = (
 				70561A8418E2430400B76286 /* ios.txt */,
 				70561A8518E2431400B76286 /* server.py */,
-				70561A5218E242C200B76286 /* code */,
+				70561A8718E243F300B76286 /* Model */,
+				70561A8618E243E600B76286 /* Controllers */,
+				701AC6ED18ECAB5A005D748D /* Views */,
+				70561A8818E2440300B76286 /* Application */,
+				70561A5318E242C200B76286 /* Supporting Files */,
 				70561A4B18E242C200B76286 /* Frameworks */,
 				70561A4A18E242C200B76286 /* Products */,
 			);
@@ -104,19 +111,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		70561A5218E242C200B76286 /* code */ = {
-			isa = PBXGroup;
-			children = (
-				70561A8818E2440300B76286 /* Application */,
-				70561A8718E243F300B76286 /* Model */,
-				70561A8618E243E600B76286 /* Controllers */,
-				701AC6ED18ECAB5A005D748D /* Views */,
-				70561A5318E242C200B76286 /* Supporting Files */,
-			);
-			name = code;
-			path = pebble;
-			sourceTree = "<group>";
-		};
 		70561A5318E242C200B76286 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +120,7 @@
 				701AC6E418EC7C9F005D748D /* Images.xcassets */,
 			);
 			name = "Supporting Files";
+			path = pebble;
 			sourceTree = "<group>";
 		};
 		70561A8618E243E600B76286 /* Controllers */ = {
@@ -133,12 +128,11 @@
 			children = (
 				701AC6DB18EC7C8B005D748D /* RLCommandLogTableViewController.h */,
 				701AC6DA18EC7C8B005D748D /* RLCommandLogTableViewController.m */,
-				701AC6DC18EC7C8B005D748D /* RLCommandTableViewCell.h */,
-				701AC6DE18EC7C8B005D748D /* RLCommandTableViewCell.m */,
 				701AC6DD18EC7C8B005D748D /* RLCurrentStateViewController.h */,
 				701AC6D918EC7C8B005D748D /* RLCurrentStateViewController.m */,
 			);
 			name = Controllers;
+			path = pebble;
 			sourceTree = "<group>";
 		};
 		70561A8718E243F300B76286 /* Model */ = {
@@ -150,6 +144,7 @@
 				701AC6D318EC7C03005D748D /* RLCommand.m */,
 			);
 			name = Model;
+			path = pebble;
 			sourceTree = "<group>";
 		};
 		70561A8818E2440300B76286 /* Application */ = {
@@ -160,6 +155,7 @@
 				701AC6D018EC7BE6005D748D /* Main.storyboard */,
 			);
 			name = Application;
+			path = pebble;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
