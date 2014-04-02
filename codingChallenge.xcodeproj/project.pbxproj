@@ -1,0 +1,361 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		701AC6CF18EC7BBA005D748D /* RLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6CD18EC7BBA005D748D /* RLAppDelegate.m */; };
+		701AC6D718EC7C03005D748D /* RLCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6D318EC7C03005D748D /* RLCommand.m */; };
+		701AC6D818EC7C03005D748D /* RLServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6D418EC7C03005D748D /* RLServerAdapter.m */; };
+		701AC6DF18EC7C8B005D748D /* RLCurrentStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6D918EC7C8B005D748D /* RLCurrentStateViewController.m */; };
+		701AC6E018EC7C8B005D748D /* RLCommandLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6DA18EC7C8B005D748D /* RLCommandLogTableViewController.m */; };
+		701AC6E118EC7C8B005D748D /* RLCommandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6DE18EC7C8B005D748D /* RLCommandTableViewCell.m */; };
+		701AC6E918EC7C9F005D748D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701AC6E418EC7C9F005D748D /* Images.xcassets */; };
+		701AC6EB18EC7C9F005D748D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6E718EC7C9F005D748D /* main.m */; };
+		701AC6EC18EC7CFE005D748D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701AC6D018EC7BE6005D748D /* Main.storyboard */; };
+		70561A4D18E242C200B76286 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A4C18E242C200B76286 /* Foundation.framework */; };
+		70561A4F18E242C200B76286 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A4E18E242C200B76286 /* CoreGraphics.framework */; };
+		70561A5118E242C200B76286 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A5018E242C200B76286 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		701AC6CD18EC7BBA005D748D /* RLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLAppDelegate.m; path = code/RLAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		701AC6CE18EC7BBA005D748D /* RLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLAppDelegate.h; path = code/RLAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		701AC6D118EC7BE6005D748D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = code/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		701AC6D318EC7C03005D748D /* RLCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLCommand.m; path = code/RLCommand.m; sourceTree = SOURCE_ROOT; };
+		701AC6D418EC7C03005D748D /* RLServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLServerAdapter.m; path = code/RLServerAdapter.m; sourceTree = SOURCE_ROOT; };
+		701AC6D518EC7C03005D748D /* RLServerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLServerAdapter.h; path = code/RLServerAdapter.h; sourceTree = SOURCE_ROOT; };
+		701AC6D618EC7C03005D748D /* RLCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLCommand.h; path = code/RLCommand.h; sourceTree = SOURCE_ROOT; };
+		701AC6D918EC7C8B005D748D /* RLCurrentStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLCurrentStateViewController.m; path = code/RLCurrentStateViewController.m; sourceTree = SOURCE_ROOT; };
+		701AC6DA18EC7C8B005D748D /* RLCommandLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLCommandLogTableViewController.m; path = code/RLCommandLogTableViewController.m; sourceTree = SOURCE_ROOT; };
+		701AC6DB18EC7C8B005D748D /* RLCommandLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLCommandLogTableViewController.h; path = code/RLCommandLogTableViewController.h; sourceTree = SOURCE_ROOT; };
+		701AC6DC18EC7C8B005D748D /* RLCommandTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLCommandTableViewCell.h; path = code/RLCommandTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		701AC6DD18EC7C8B005D748D /* RLCurrentStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLCurrentStateViewController.h; path = code/RLCurrentStateViewController.h; sourceTree = SOURCE_ROOT; };
+		701AC6DE18EC7C8B005D748D /* RLCommandTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLCommandTableViewCell.m; path = code/RLCommandTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		701AC6E218EC7C9F005D748D /* codingChallenge-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "codingChallenge-Info.plist"; path = "code/codingChallenge-Info.plist"; sourceTree = SOURCE_ROOT; };
+		701AC6E318EC7C9F005D748D /* codingChallenge-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "codingChallenge-Prefix.pch"; path = "code/codingChallenge-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		701AC6E418EC7C9F005D748D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = code/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		701AC6E718EC7C9F005D748D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = code/main.m; sourceTree = SOURCE_ROOT; };
+		70561A4918E242C200B76286 /* codingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = codingChallenge.app; path = colors.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70561A4C18E242C200B76286 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		70561A4E18E242C200B76286 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		70561A5018E242C200B76286 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		70561A6E18E242C200B76286 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		70561A8418E2430400B76286 /* ios.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ios.txt; sourceTree = "<group>"; };
+		70561A8518E2431400B76286 /* server.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = server.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70561A4618E242C200B76286 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70561A4F18E242C200B76286 /* CoreGraphics.framework in Frameworks */,
+				70561A5118E242C200B76286 /* UIKit.framework in Frameworks */,
+				70561A4D18E242C200B76286 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		70561A4018E242C200B76286 = {
+			isa = PBXGroup;
+			children = (
+				70561A8418E2430400B76286 /* ios.txt */,
+				70561A8518E2431400B76286 /* server.py */,
+				70561A5218E242C200B76286 /* code */,
+				70561A4B18E242C200B76286 /* Frameworks */,
+				70561A4A18E242C200B76286 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		70561A4A18E242C200B76286 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70561A4918E242C200B76286 /* codingChallenge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70561A4B18E242C200B76286 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70561A4C18E242C200B76286 /* Foundation.framework */,
+				70561A4E18E242C200B76286 /* CoreGraphics.framework */,
+				70561A5018E242C200B76286 /* UIKit.framework */,
+				70561A6E18E242C200B76286 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		70561A5218E242C200B76286 /* code */ = {
+			isa = PBXGroup;
+			children = (
+				70561A8818E2440300B76286 /* Application */,
+				70561A8718E243F300B76286 /* Model */,
+				70561A8618E243E600B76286 /* Controllers */,
+				70561A5318E242C200B76286 /* Supporting Files */,
+			);
+			name = code;
+			path = pebble;
+			sourceTree = "<group>";
+		};
+		70561A5318E242C200B76286 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				701AC6E718EC7C9F005D748D /* main.m */,
+				701AC6E218EC7C9F005D748D /* codingChallenge-Info.plist */,
+				701AC6E318EC7C9F005D748D /* codingChallenge-Prefix.pch */,
+				701AC6E418EC7C9F005D748D /* Images.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70561A8618E243E600B76286 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				701AC6DB18EC7C8B005D748D /* RLCommandLogTableViewController.h */,
+				701AC6DA18EC7C8B005D748D /* RLCommandLogTableViewController.m */,
+				701AC6DC18EC7C8B005D748D /* RLCommandTableViewCell.h */,
+				701AC6DE18EC7C8B005D748D /* RLCommandTableViewCell.m */,
+				701AC6DD18EC7C8B005D748D /* RLCurrentStateViewController.h */,
+				701AC6D918EC7C8B005D748D /* RLCurrentStateViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		70561A8718E243F300B76286 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				701AC6D518EC7C03005D748D /* RLServerAdapter.h */,
+				701AC6D418EC7C03005D748D /* RLServerAdapter.m */,
+				701AC6D618EC7C03005D748D /* RLCommand.h */,
+				701AC6D318EC7C03005D748D /* RLCommand.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		70561A8818E2440300B76286 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				701AC6CE18EC7BBA005D748D /* RLAppDelegate.h */,
+				701AC6CD18EC7BBA005D748D /* RLAppDelegate.m */,
+				701AC6D018EC7BE6005D748D /* Main.storyboard */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70561A4818E242C200B76286 /* colors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70561A7E18E242C200B76286 /* Build configuration list for PBXNativeTarget "colors" */;
+			buildPhases = (
+				70561A4518E242C200B76286 /* Sources */,
+				70561A4618E242C200B76286 /* Frameworks */,
+				70561A4718E242C200B76286 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = colors;
+			productName = pebble;
+			productReference = 70561A4918E242C200B76286 /* codingChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70561A4118E242C200B76286 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Rene Limberger";
+			};
+			buildConfigurationList = 70561A4418E242C200B76286 /* Build configuration list for PBXProject "codingChallenge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70561A4018E242C200B76286;
+			productRefGroup = 70561A4A18E242C200B76286 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70561A4818E242C200B76286 /* colors */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70561A4718E242C200B76286 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701AC6EC18EC7CFE005D748D /* Main.storyboard in Resources */,
+				701AC6E918EC7C9F005D748D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70561A4518E242C200B76286 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701AC6D818EC7C03005D748D /* RLServerAdapter.m in Sources */,
+				701AC6CF18EC7BBA005D748D /* RLAppDelegate.m in Sources */,
+				701AC6E018EC7C8B005D748D /* RLCommandLogTableViewController.m in Sources */,
+				701AC6DF18EC7C8B005D748D /* RLCurrentStateViewController.m in Sources */,
+				701AC6D718EC7C03005D748D /* RLCommand.m in Sources */,
+				701AC6EB18EC7C9F005D748D /* main.m in Sources */,
+				701AC6E118EC7C8B005D748D /* RLCommandTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		701AC6D018EC7BE6005D748D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				701AC6D118EC7BE6005D748D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70561A7C18E242C200B76286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		70561A7D18E242C200B76286 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70561A7F18E242C200B76286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "code/codingChallenge-Prefix.pch";
+				INFOPLIST_FILE = "code/codingChallenge-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		70561A8018E242C200B76286 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "code/codingChallenge-Prefix.pch";
+				INFOPLIST_FILE = "code/codingChallenge-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70561A4418E242C200B76286 /* Build configuration list for PBXProject "codingChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70561A7C18E242C200B76286 /* Debug */,
+				70561A7D18E242C200B76286 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70561A7E18E242C200B76286 /* Build configuration list for PBXNativeTarget "colors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70561A7F18E242C200B76286 /* Debug */,
+				70561A8018E242C200B76286 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 70561A4118E242C200B76286 /* Project object */;
+}
