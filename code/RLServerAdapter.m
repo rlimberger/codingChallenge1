@@ -17,7 +17,6 @@
     NSString* hostname;
     NSInteger port;
     dispatch_source_t source;
-    NSInteger listeningSocket;
 }
 
 @end
@@ -43,15 +42,8 @@
 {
     if((self = [super init])) {
         _commandStack = [NSMutableArray array];
-        listeningSocket = -1;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    if(listeningSocket >= 0)
-        close(listeningSocket);
 }
 
 #pragma mark - connection implementation
@@ -80,7 +72,7 @@
         memset(&hints, 0, sizeof hints);
         hints.ai_family = AF_INET;
         hints.ai_socktype = SOCK_STREAM;
-        getaddrinfo(strongSelf->hostname.UTF8String, [NSString stringWithFormat:@"%d", strongSelf->port].UTF8String, &hints, &res);
+        getaddrinfo(strongSelf->hostname.UTF8String, [NSString stringWithFormat:@"%ld", (long)strongSelf->port].UTF8String, &hints, &res);
         
         // Create socket and connect
         int listenSocket = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
@@ -93,7 +85,7 @@
         // set bytes available handler
         dispatch_source_set_event_handler(strongSelf->source, ^{
             char buf[READ_BUFFER_SIZE];
-            int numBytesRead;
+            ssize_t numBytesRead;
             numBytesRead = read(listenSocket, buf, READ_BUFFER_SIZE-1);
             if(numBytesRead) {
                 NSData* data = [NSData dataWithBytes:buf length:numBytesRead];

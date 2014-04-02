@@ -8,12 +8,13 @@
 #import "RLCommandLogTableViewController.h"
 #import "RLServerAdapter.h"
 #import "RLCommandTableViewCell.h"
+#import "RLSwatchView.h"
 
 #pragma mark - private interface
 
 @interface RLCommandLogTableViewController ()
 {
-    IBOutlet UIView* currentColorSwatch;
+    IBOutlet RLSwatchView* currentColorSwatch;
 }
 
 @end
@@ -39,13 +40,6 @@
         RLCommandLogTableViewController* strongSelf = weakSelf;
         [strongSelf updateCurrentStateSwatch];
     }];
-    
-    // make the color swatch in the navigation bar pretty
-    if(currentColorSwatch) {
-        currentColorSwatch.layer.borderWidth = 1;
-        currentColorSwatch.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
-        currentColorSwatch.layer.cornerRadius = 3;
-    }
     
     // set initial state of the color swtach in the navigation bar
     [self updateCurrentStateSwatch];
@@ -98,7 +92,7 @@
         absoluteCell.commandValueLabel.text = [NSString stringWithFormat:@"R=%ld G=%ld B=%ld", (long)command.r, (long)command.g, (long)command.b];
         
         // set color swatch
-        absoluteCell.colorSwatchView.backgroundColor = [UIColor colorWithRed:command.r/255.0f green:command.g/255.0f blue:command.b/255.0f alpha:1.0f];
+        [absoluteCell.colorSwatchView setColor:[UIColor colorWithRed:command.r/255.0f green:command.g/255.0f blue:command.b/255.0f alpha:1.0f]];
         
         // set accessory type based on active state of the command
         absoluteCell.accessoryType = (command.active) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -147,10 +141,19 @@
 
 - (void)updateCurrentStateSwatch
 {
+    // get current values
+    RLServerAdapter* adapter = [RLServerAdapter sharedAdapter];
+    NSUInteger r = adapter.currentR;
+    NSUInteger g = adapter.currentG;
+    NSUInteger b = adapter.currentB;
+    UIColor* c = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f];
+    
     // this function may be called from any thread (i.e. a notification), so we need
     // to make sure we run the UI update on the main thread
+    __weak RLCommandLogTableViewController* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^(void){
-        currentColorSwatch.backgroundColor = [UIColor colorWithRed:[RLServerAdapter sharedAdapter].currentR/255.0f green:[RLServerAdapter sharedAdapter].currentG/255.0f blue:[RLServerAdapter sharedAdapter].currentB/255.0f alpha:1.0f];
+        RLCommandLogTableViewController* strongSelf = weakSelf;
+        [strongSelf->currentColorSwatch setColor:c];
     });
 }
 

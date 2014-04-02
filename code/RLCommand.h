@@ -27,42 +27,48 @@ typedef enum _commandTypes
 /**
  Type of the command
  
- @discussion The server sends different kinds of commands. This porperty can be used to identify the different kinds. See `<RLCommandType>` for the differnt types possible.
+ @discussion 
+ The server sends different kinds of commands. This porperty can be used to identify the different kinds. See `<RLCommandType>` for the differnt types possible.
  */
 @property (readonly) RLCommandType type;
 
 /**
  The value of the red component of the command.
  
- @discussion The meaning of this value depends on the `<RLCommandType>` of the command.
+ @discussion 
+ The meaning of this value depends on the `<RLCommandType>` of the command.
  */
 @property (readonly) NSInteger r;
 
 /**
  The value of the green component of the command.
  
- @discussion The meaning of this value depends on the `<RLCommandType>` of the command.
+ @discussion 
+ The meaning of this value depends on the `<RLCommandType>` of the command.
  */
 @property (readonly) NSInteger g;
 
 /**
  The value of the blue component of the command.
  
- @discussion The meaning of this value depends on the `<RLCommandType>` of the command.
+ @discussion 
+ The meaning of this value depends on the `<RLCommandType>` of the command.
  */
 @property (readonly) NSInteger b;
 
 /**
  The state of the command.
  
- @discussion A command can be active or inactive. An inactive command is not considered in the computation of the state.
+ @discussion 
+ A command can be active or inactive. An inactive command is not considered in the computation of the state.
  */
 @property (readwrite) BOOL active;
 
 /**
  Initializes a command instance.
  
- @param data The raw data as received from the server.
+ @param 
+ data The raw data as received from the server.
  */
 - (id)initWithData:(NSData*)data;
 

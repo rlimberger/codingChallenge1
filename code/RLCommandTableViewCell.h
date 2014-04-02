@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RLSwatchView.h"
 
 /**
  `RLCommandTableViewCell` is the base class for all the different table view cells that represent the different
@@ -22,7 +23,7 @@
  */
 @interface RLAbsoluteCommandTableViewCell : RLCommandTableViewCell
 
-@property (strong) IBOutlet UIView* colorSwatchView;
+@property (strong) IBOutlet RLSwatchView* colorSwatchView;
 
 @end
 

@@ -7,12 +7,13 @@
 
 #import "RLCurrentStateViewController.h"
 #import "RLServerAdapter.h"
+#import "RLSwatchView.h"
 
 #pragma mark - private interface
 
 @interface RLCurrentStateViewController ()
 {
-    IBOutlet UIView* currentColorStateSwatch;
+    IBOutlet RLSwatchView* currentColorStateSwatch;
     IBOutlet UILabel* currentColorStateLabel;
 }
 
@@ -33,13 +34,6 @@
         [strongSelf update];
     }];
     
-    // make swatch pretty
-    if(currentColorStateSwatch) {
-        currentColorStateSwatch.layer.borderWidth = 1;
-        currentColorStateSwatch.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
-        currentColorStateSwatch.layer.cornerRadius = 5;
-    }
-    
     // set initial state of lable and swatch
     [self update];
 }
@@ -49,16 +43,46 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)dealloc
+{
+    // unsubscribe from the notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - UI update
 
 - (void)update
 {
+    // get current values
+    RLServerAdapter* adapter = [RLServerAdapter sharedAdapter];
+    NSUInteger r = adapter.currentR;
+    NSUInteger g = adapter.currentG;
+    NSUInteger b = adapter.currentB;
+    UIColor* c = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f];
+    NSString* s = [NSString stringWithFormat:@"R:%ld G:%ld B:%ld", (long)r, (long)g, (long)b];
+    
     // this function may be called from any thread (i.e. a notification), so we need
     // to make sure we run the UI update on the main thread
+    __weak RLCurrentStateViewController* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^(void){
-        currentColorStateSwatch.backgroundColor = [UIColor colorWithRed:[RLServerAdapter sharedAdapter].currentR/255.0f green:[RLServerAdapter sharedAdapter].currentG/255.0f blue:[RLServerAdapter sharedAdapter].currentB/255.0f alpha:1.0f];
-        currentColorStateLabel.text = [NSString stringWithFormat:@"R:%ld G:%ld B:%ld", (long)[RLServerAdapter sharedAdapter].currentR, (long)[RLServerAdapter sharedAdapter].currentG, (long)[RLServerAdapter sharedAdapter].currentB];
+        RLCurrentStateViewController* strongSelf = weakSelf;
+        [strongSelf->currentColorStateSwatch setColor:c];
+        strongSelf->currentColorStateLabel.text = s;
     });
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

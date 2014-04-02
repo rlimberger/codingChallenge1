@@ -16,6 +16,7 @@
 		701AC6E918EC7C9F005D748D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701AC6E418EC7C9F005D748D /* Images.xcassets */; };
 		701AC6EB18EC7C9F005D748D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6E718EC7C9F005D748D /* main.m */; };
 		701AC6EC18EC7CFE005D748D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701AC6D018EC7BE6005D748D /* Main.storyboard */; };
+		701AC6F018ECAB76005D748D /* RLSwatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 701AC6EF18ECAB76005D748D /* RLSwatchView.m */; };
 		70561A4D18E242C200B76286 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A4C18E242C200B76286 /* Foundation.framework */; };
 		70561A4F18E242C200B76286 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A4E18E242C200B76286 /* CoreGraphics.framework */; };
 		70561A5118E242C200B76286 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70561A5018E242C200B76286 /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 		701AC6E318EC7C9F005D748D /* codingChallenge-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "codingChallenge-Prefix.pch"; path = "code/codingChallenge-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		701AC6E418EC7C9F005D748D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = code/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		701AC6E718EC7C9F005D748D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = code/main.m; sourceTree = SOURCE_ROOT; };
+		701AC6EE18ECAB76005D748D /* RLSwatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RLSwatchView.h; path = code/RLSwatchView.h; sourceTree = SOURCE_ROOT; };
+		701AC6EF18ECAB76005D748D /* RLSwatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLSwatchView.m; path = code/RLSwatchView.m; sourceTree = SOURCE_ROOT; };
 		70561A4918E242C200B76286 /* codingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = codingChallenge.app; path = colors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70561A4C18E242C200B76286 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		70561A4E18E242C200B76286 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		701AC6ED18ECAB5A005D748D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				701AC6EE18ECAB76005D748D /* RLSwatchView.h */,
+				701AC6EF18ECAB76005D748D /* RLSwatchView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		70561A4018E242C200B76286 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +110,7 @@
 				70561A8818E2440300B76286 /* Application */,
 				70561A8718E243F300B76286 /* Model */,
 				70561A8618E243E600B76286 /* Controllers */,
+				701AC6ED18ECAB5A005D748D /* Views */,
 				70561A5318E242C200B76286 /* Supporting Files */,
 			);
 			name = code;
@@ -218,6 +231,7 @@
 				701AC6CF18EC7BBA005D748D /* RLAppDelegate.m in Sources */,
 				701AC6E018EC7C8B005D748D /* RLCommandLogTableViewController.m in Sources */,
 				701AC6DF18EC7C8B005D748D /* RLCurrentStateViewController.m in Sources */,
+				701AC6F018ECAB76005D748D /* RLSwatchView.m in Sources */,
 				701AC6D718EC7C03005D748D /* RLCommand.m in Sources */,
 				701AC6EB18EC7C9F005D748D /* main.m in Sources */,
 				701AC6E118EC7C8B005D748D /* RLCommandTableViewCell.m in Sources */,
