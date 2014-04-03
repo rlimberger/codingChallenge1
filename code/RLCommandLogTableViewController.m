@@ -6,7 +6,7 @@
 //
 
 #import "RLCommandLogTableViewController.h"
-#import "RLServerAdapter.h"
+#import "RLCommandStackModel.h"
 #import "RLCommandTableViewCell.h"
 #import "RLSwatchView.h"
 
@@ -32,7 +32,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"newCommand" object:nil queue:nil usingBlock:^(NSNotification* note) {
         dispatch_async(dispatch_get_main_queue(), ^{
             RLCommandLogTableViewController* strongSelf = weakSelf;
-            [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [strongSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
     
@@ -66,12 +66,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [RLServerAdapter sharedAdapter].stackSize;
+    return [RLCommandStackModel sharedCommandStackModel].stackSize;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RLCommand* command = [[RLServerAdapter sharedAdapter] commandAtIndex:indexPath.row];
+    RLCommand* command = [[RLCommandStackModel sharedCommandStackModel] commandAtIndex:indexPath.row];
     if(!command)
         return nil;
     
@@ -112,7 +112,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // figure out which command this row represents
-    BOOL toggled = [[RLServerAdapter sharedAdapter] toggleActive:indexPath.row];
+    BOOL toggled = [[RLCommandStackModel sharedCommandStackModel] toggleActive:indexPath.row];
     
     if(toggled) {
         // rebuild this row
@@ -130,10 +130,10 @@
 - (void)updateCurrentStateSwatch
 {
     // get current values
-    RLServerAdapter* adapter = [RLServerAdapter sharedAdapter];
-    NSUInteger r = adapter.currentR;
-    NSUInteger g = adapter.currentG;
-    NSUInteger b = adapter.currentB;
+    RLCommandStackModel* commandStackModel = [RLCommandStackModel sharedCommandStackModel];
+    NSUInteger r = commandStackModel.currentR;
+    NSUInteger g = commandStackModel.currentG;
+    NSUInteger b = commandStackModel.currentB;
     UIColor* c = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f];
     
     // this function may be called from any thread (i.e. a notification), so we need

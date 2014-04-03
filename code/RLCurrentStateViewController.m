@@ -6,7 +6,7 @@
 //
 
 #import "RLCurrentStateViewController.h"
-#import "RLServerAdapter.h"
+#import "RLCommandStackModel.h"
 #import "RLSwatchView.h"
 
 #pragma mark - private interface
@@ -54,10 +54,10 @@
 - (void)update
 {
     // get current values
-    RLServerAdapter* adapter = [RLServerAdapter sharedAdapter];
-    NSUInteger r = adapter.currentR;
-    NSUInteger g = adapter.currentG;
-    NSUInteger b = adapter.currentB;
+    RLCommandStackModel* commandStackModel = [RLCommandStackModel sharedCommandStackModel];
+    NSUInteger r = commandStackModel.currentR;
+    NSUInteger g = commandStackModel.currentG;
+    NSUInteger b = commandStackModel.currentB;
     UIColor* c = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f];
     NSString* s = [NSString stringWithFormat:@"R:%ld G:%ld B:%ld", (long)r, (long)g, (long)b];
     

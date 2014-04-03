@@ -6,6 +6,7 @@
 //
 
 #import "RLServerAdapter.h"
+#import "RLCommandStackModel.h"
 #import <netdb.h>
 
 #define READ_BUFFER_SIZE 512
@@ -17,7 +18,6 @@
     NSString* hostname;
     NSInteger port;
     dispatch_source_t source;
-    NSMutableArray* commandStack;
 }
 
 @end
@@ -39,14 +39,6 @@
     return singleton;
 }
 
-- (id)init
-{
-    if((self = [super init])) {
-        commandStack = [NSMutableArray array];
-    }
-    return self;
-}
-
 #pragma mark - connection implementation
 
 - (void)connectToServer:(NSString*)aHostname withPort:(NSInteger)aPort
@@ -61,7 +53,7 @@
     }
     
     // init our stack
-    [self initCommandStack];
+    [[RLCommandStackModel sharedCommandStackModel] initCommandStack];
     
     // create socket connetion and event handlers
     __weak RLServerAdapter* weakSelf = self;
@@ -116,6 +108,8 @@
     [alert show];
 }
 
+#pragma mark - UIAlertView delegate
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     // if the retry button was clicked, connect again
@@ -136,138 +130,10 @@
         return;
     
     // add new command to stack
-    [self pushCommand:command];
+    [[RLCommandStackModel sharedCommandStackModel] pushCommand:command];
 }
 
-#pragma mark - stack
-
-- (void)pushCommand:(RLCommand*)command
-{
-    // because we are going to add a new absolute command,
-    // all previous commands should become inactive (deselected)
-    // the new command added below will be active by default
-    if(command.type == CommandTypeAbsolute) {
-        for(RLCommand* c in commandStack)
-            c.active = NO;
-    }
-    
-    // FIXME: according to challenge, there is no conditon
-    // where the command stack/log will be reset.
-    // eventually, this will cause a memory problem, but we ignore this
-    // for now
-    [commandStack addObject:command];
-    
-    // state needs to be updated
-    [self recomputeCurrentColorState];
-    
-    // send NSNotification so the controllers can update their UI
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"newCommand" object:command];
-}
-
-- (void)initCommandStack
-{
-    // according to the server spec, we should start with
-    // these defaults in the stack
-    unsigned char bytes[4] = {CommandTypeAbsolute, 127, 127, 127};
-    NSData* data = [NSData dataWithBytes:(const void*)bytes length:4];
-    RLCommand* command = [[RLCommand alloc] initWithData:data];
-    [commandStack removeAllObjects];
-    [self pushCommand:command];
-}
-
-#pragma mark - state
-
-- (void)recomputeCurrentColorState
-{
-    // according to the server coding challenge, the processing
-    // of the state may be CPU intensive in the future. so we
-    // do this potentially "expensive" work on a dedicated queue
-    dispatch_async([RLServerAdapter dispatchQueue], ^{
-        RLCommand* currentAbsoluteCommand = nil;
-        
-        // walk stack from top to bottom to find the last absolute command
-        for(RLCommand* command in commandStack.reverseObjectEnumerator) {
-            if(command.type == CommandTypeAbsolute) {
-                currentAbsoluteCommand = command;
-                break;
-            }
-        }
-        
-        // failsafe, we should never end up in this condition since we init the stack with
-        // an absolute command, but just to be safe
-        if(!currentAbsoluteCommand)
-            return;
-        
-        // now walk up the stack from the current absolute command and apply all active
-        // change commands
-        _currentR = currentAbsoluteCommand.r;
-        _currentG = currentAbsoluteCommand.g;
-        _currentB = currentAbsoluteCommand.b;
-        NSInteger indexOfCurrentAbsoluteCommand = [commandStack indexOfObject:currentAbsoluteCommand];
-        for(NSInteger i = indexOfCurrentAbsoluteCommand; i < commandStack.count; i++) {
-            RLCommand* command = commandStack[i];
-            
-            // we should not encounter any absolute commands at this point, but
-            // lets just make sure
-            if(command.type == CommandTypeRelative && command.active) {
-                _currentR = (_currentR + command.r) % 255;
-                _currentG = (_currentG + command.g) % 255;
-                _currentB = (_currentB + command.b) % 255;
-            }
-        }
-        
-        // send NSNotification so the controllers can update their UI
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentStateUpdated" object:nil];
-    });
-}
-
-- (BOOL)toggleActive:(NSInteger)index
-{
-    if(index < 0 || index >= commandStack.count)
-        return NO;
-    
-    __weak RLServerAdapter* weakSelf = self;
-    __block BOOL toggled = NO;
-    dispatch_sync([RLServerAdapter dispatchQueue], ^{
-        RLServerAdapter* strongSelf = weakSelf;
-        RLCommand* command = [strongSelf->commandStack objectAtIndex:strongSelf->commandStack.count-1-index];
-        
-        if(command) {
-            command.active = !command.active;
-            [strongSelf recomputeCurrentColorState];
-            toggled = YES;
-        }
-    });
-    
-    return toggled;
-}
-
-- (RLCommand*)commandAtIndex:(NSInteger)index
-{
-    if(index < 0 || index >= commandStack.count)
-        return nil;
-    
-    __block RLCommand* command = nil;
-    __weak RLServerAdapter* weakSelf = self;
-    dispatch_sync([RLServerAdapter dispatchQueue], ^{
-        RLServerAdapter* strongSelf = weakSelf;
-        command = [strongSelf->commandStack objectAtIndex:strongSelf->commandStack.count-1-index];
-    });
-    
-    return command;
-}
-
-- (NSInteger)stackSize
-{
-    __block NSInteger stackSize = 0;
-    __weak RLServerAdapter* weakSelf = self;
-    dispatch_sync([RLServerAdapter dispatchQueue], ^{
-        RLServerAdapter* strongSelf = weakSelf;
-        stackSize = strongSelf->commandStack.count;
-    });
-    
-    return stackSize;
-}
+#pragma mark - queues
 
 // singleton background queue
 + (dispatch_queue_t)dispatchQueue
